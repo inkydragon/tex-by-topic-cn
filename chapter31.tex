@@ -7,7 +7,7 @@
 \begin{document}
 
 %\chapter{Allocation}\label{alloc}
-\chapter{Allocation}\label{alloc}
+\chapter{寄存器分配}\label{alloc}
 
 %\TeX\ has registers of a number of types. For some of these,
 %explicit commands exist to define a synonym for a certain register;
@@ -15,12 +15,12 @@
 %to allocate an unused register. This chapter treats
 %the synonym and allocation commands, and discusses
 %some guidelines for macro writers regarding allocation.
-\TeX\ has registers of a number of types. For some of these,
-explicit commands exist to define a synonym for a certain register;
-for all of them macros exist in the plain format
-to allocate an unused register. This chapter treats
-the synonym and allocation commands, and discusses
-some guidelines for macro writers regarding allocation.
+\TeX\ 的寄存器是数字类型的。对于其中的一些寄存器，
+我们可以使用显式的命令定义某个特定寄存器的别名;
+在 plain \TeX\ 中，
+所有类型的寄存器都可以通过对应的宏来分配一个未使用的寄存器。
+本章主要关注别名定义和寄存器分配命令。
+对于宏编写者，我们讨论了一些关于寄存器分配的方针。
 
 %\begin{inventory}
 %\item [\cs{countdef}] 
@@ -59,77 +59,72 @@ some guidelines for macro writers regarding allocation.
 %\end{inventory}
 \begin{inventory}
 \item [\cs{countdef}] 
-      Define a synonym for a \cs{count} register.
+      定义了一个 \cs{count} 寄存器的别名。
 \item [\cs{dimendef}]
-      Define a synonym for a \cs{dimen} register.
+      定义了一个 \cs{dimen} 寄存器的别名。
 \item [\cs{muskipdef}]
-      Define a synonym for a \cs{muskip} register.
+      定义了一个 \cs{muskip} 寄存器的别名。
 \item [\cs{skipdef}] 
-      Define a synonym for a \cs{skip} register.
+      定义了一个 \cs{skip} 寄存器的别名。
 \item [\cs{toksdef}] 
-      Define a synonym for a \cs{toks} register.
+      定义了一个 \cs{toks} 寄存器的别名。
 \item [\cs{newbox}]
-      Allocate an unused \cs{box} register.
+      分配了一个未使用的 \cs{box} 分寄存器。
 \item [\cs{newcount}]
-      Allocate an unused \cs{count} register.
+      分配了一个未使用的 \cs{count} 分寄存器。
 \item [\cs{newdimen}]
-      Allocate an unused \cs{dimen} register.
+      分配了一个未使用的 \cs{dimen} 分寄存器。
 \item [\cs{newfam}]
-      Allocate an unused math family.
+      分配了一个未使用的数学字体族。
 \item [\cs{newinsert}]
-      Allocate an unused insertion class.
+      分配了一个未使用的插入类。
 \item [\cs{newlanguage}]
-      (\TeX3 only)
-      Allocate a new language number.
+      (仅 \TeX3)
+      分配了一个新的语言数字。
 \item [\cs{newmuskip}]
-      Allocate an unused \cs{muskip} register.
+      分配了一个未使用的 \cs{muskip} 分寄存器。
 \item [\cs{newskip}]
-      Allocate an unused \cs{skip} register.
+      分配了一个未使用的 \cs{skip} 分寄存器。
 \item [\cs{newtoks}]
-      Allocate an unused \cs{toks} register.
+      分配了一个未使用的 \cs{toks} 分寄存器。
 \item [\cs{newread}]
-      Allocate an unused input stream.
+      分配了一个未使用的输入流。
 \item [\cs{newwrite}]
-      Allocate an unused output stream.
+      分配了一个未使用的输出流。
 \end{inventory}
 
 %%\point Allocation commands
 %\section{Allocation commands}
 %\index{registers!allocation of|(}
 %\point Allocation commands
-\section{Allocation commands}
+\section{寄存器分配命令}
 \index{registers!allocation of|(}
 
 %In plain \TeX, \cs{new...} macros are defined for
 %allocation of registers.
 %The registers of \TeX\ fall into two classes that are 
 %allocated in different ways. This is treated below.
-In plain \TeX, \cs{new...} macros are defined for
-allocation of registers.
-The registers of \TeX\ fall into two classes that are 
-allocated in different ways. This is treated below.
+在 plain \TeX 中, 定义了宏 \cs{new...} 用于分配寄存器。
+\TeX\ 的寄存器可以根据分配方式的不同而分为两类。这一点在下面会谈到。
 
 %The \csidx{newlanguage} macro of plain \TeX\ 
 %does not allocate any register. Instead it merely assigns
 %a number, starting from~0.
 %\TeX\ (version~3) can have at most 256 different
 %sets of hyphenation patterns.
-The \csidx{newlanguage} macro of plain \TeX\ 
-does not allocate any register. Instead it merely assigns
-a number, starting from~0.
-\TeX\ (version~3) can have at most 256 different
-sets of hyphenation patterns.
+plain \TeX\ 的 \csidx{newlanguage} 宏并不会分配任何的寄存器。
+相反的，它只是从0开始，分配了一个数字。
+\TeX3 最多有256种断字组合模式。
 
 %The \cs{new...} macros of plain \TeX\ are defined to be
 %\cs{outer} (see Chapter~\ref{macro} for a precise explanation),
 %which precludes use of the allocation macros in other macros.
 %Therefore the \LaTeX\ format redefines these macros
 %without the \cs{outer} prefix.
-The \cs{new...} macros of plain \TeX\ are defined to be
-\cs{outer} (see Chapter~\ref{macro} for a precise explanation),
-which precludes use of the allocation macros in other macros.
-Therefore the \LaTeX\ format redefines these macros
-without the \cs{outer} prefix.
+plain \TeX\ 的 \cs{new...} 宏被定义为 \cs{outer}
+(精确定义详见 Chapter~\ref{macro}),
+\cs{outer} 避免了在其他宏中使用分配宏。
+因此，\LaTeX\ 在重定义这些宏时没有带上 \cs{outer} 前缀。
 
 %%\spoint \cs{count}, \cs{dimen}, \cs{skip}, \cs{muskip}, \cs{toks}
 %\subsection{\cs{count}, \cs{dimen}, \cs{skip}, \cs{muskip}, \cs{toks}}
@@ -141,9 +136,8 @@ without the \cs{outer} prefix.
 %to a control sequence:
 %\begin{Disp}\gr{registerdef}\gr{control 
 %    sequence}\gr{equals}\gr{8-bit number}\end{Disp}
-For these registers there exists a \gr{registerdef} command,
-for instance \cs{countdef}, to couple a specific register
-to a control sequence:
+对于这些寄存器，存在一个 \gr{registerdef} 命令。
+举个例子：\cs{countdef}, 将寄存器与特定的控制序列组合在一起：
 \begin{Disp}\gr{registerdef}\gr{control 
     sequence}\gr{equals}\gr{8-bit number}\end{Disp}
 
@@ -159,15 +153,15 @@ to a control sequence:
 %\begin{verbatim}
 %\vskip\MyCount\baselineskip
 %\end{verbatim}
-After the definition
+在定义之后
 \begin{verbatim}
 \countdef\MyCount=42
 \end{verbatim}
-the allocated register can be used as
+分配的寄存器可以这样使用：
 \begin{verbatim}
 \MyCount=314
 \end{verbatim}
-or
+或者
 \begin{verbatim}
 \vskip\MyCount\baselineskip
 \end{verbatim}
@@ -180,14 +174,12 @@ or
 %\end{verbatim}
 %\cs{MyCount} can be used
 %exactly as in the above two examples.
-The \gr{registerdef} commands are used in plain \TeX\ macros
-\cs{newcount} et cetera that allocate an unused register;
-after
+\gr{registerdef} 命令用在 \cs{newcount} 等 plain \TeX\ 宏中，
+它能分配一个未使用的寄存器；在以下命令之后
 \begin{verbatim}
 \newcount\MyCount
 \end{verbatim}
-\cs{MyCount} can be used
-exactly as in the above two examples.
+\cs{MyCount} 就可以完全按照上述两个例子那样使用。
 
 %%\spoint \cs{box}, \cs{fam}, \cs{write}, \cs{read}, \cs{insert}
 %\subsection{\cs{box}, \cs{fam}, \cs{write}, \cs{read}, \cs{insert}}

@@ -1,20 +1,20 @@
 # 第 31 章 Allocation
 寄存器分配
 
-TeX 有数字类型的寄存器。
+\TeX\ 的寄存器是数字类型的
 TEX has registers of a number of types. 
 
-对于其中的一些寄存器，我们可以使用显式的命令取定义某个特定寄存器的别名。
+对于其中的一些寄存器，我们可以使用显式的命令定义某个特定寄存器的别名。
 For some of these, `explicit` commands exist to define a `synonym` for a certain register; 
 # explicit: stated clearly and in detail 明确的、显式
 # synonym: a word that means exactly or nearly the same as another word 代名词、同义词、别名
 
-在普通格式中，所有的寄存器都有都可以通过宏来分配一个未使用的寄存器。
+在普通格式中，所有类型的寄存器都可以通过对应的宏来分配一个未使用的寄存器。
 for all of them `macros` exist in the plain format to `allocate` an unused register. 
 # macros: 宏
 # allocate: 分配
 
-本章主要关注别名定义和寄存器分配命令，并讨论了一些给宏编写者的关于寄存器分配的编写指南。
+本章主要关注别名定义和寄存器分配命令。对于宏编写者，我们讨论了一些关于寄存器分配的方针。
 This chapter treats the `synonym` and `allocation` commands, and discusses some `guidelines` for macro writers `regarding` allocation.
 # allocation: 分配
 # guidelines: a general rule 方针
@@ -31,9 +31,11 @@ This chapter treats the `synonym` and `allocation` commands, and discusses some 
 \newbox `Allocate` an unused \box register.
 \newcount Allocate an unused \count register.
 \newdimen Allocate an unused \dimen register.
-\newfam Allocate an unused math family.
-\newinsert Allocate an unused insertion class.
-\newlanguage (TEX3 only) Allocate a new language number.
+
+\newfam Allocate an unused `math family`.
+\newinsert Allocate an unused `insertion class`.
+\newlanguage (TEX3 only) Allocate a new `language number`.
+
 \newmuskip Allocate an unused \muskip register.
 \newskip Allocate an unused \skip register.
 \newtoks Allocate an unused \toks register.
@@ -45,6 +47,8 @@ This chapter treats the `synonym` and `allocation` commands, and discusses some 
 
 
 ## 31.1 Allocation commands
+寄存器分配命令
+
 在plain TEX中，定义了宏\new用于分配寄存器。
 In plain TEX, \new... macros are defined for allocation of registers. 
 
@@ -74,7 +78,8 @@ Therefore the LATEX format `redefines` these macros without the \outer prefix.
 
 
 ### 31.1.1 \count, \dimen, \skip, \muskip, \toks
-对于这些寄存器，有一个⟨registerdef⟩命令。举个例子：\countdef 将寄存器与特定的控制序列组合在一起：
+
+对于这些寄存器，存在一个⟨registerdef⟩命令。举个例子：\countdef 将寄存器与特定的控制序列组合在一起：
 For these registers there exists a ⟨registerdef⟩ command, for instance \countdef, to couple a specific register to a control sequence: 
 
 > ⟨registerdef⟩⟨control sequence⟩⟨equals⟩⟨8-bit number⟩
@@ -94,12 +99,13 @@ or
 
 > \vskip\MyCount\baselineskip
 
-⟨registerdef⟩ 命令用在\newcount等plain 宏中
+⟨registerdef⟩ 命令用在\newcount等plain 宏中，它能分配一个未使用的寄存器；在以下命令之后
 The ⟨registerdef⟩ commands are used in plain TEX macros \newcount `et` `cetera` that allocate an unused register; after
 # et cetera: indicate that further 等等
 
 > \newcount\MyCount
 
+  就可以完全按照上述两个例子那样使用。
 \MyCount can be used exactly as in the above two examples.
 
 
