@@ -119,7 +119,7 @@ so \cs{chardef} is used to allocate box registers
 in the `corresponding` plain \TeX\ macros \cs{newbox}, for instance.
 # corresponding: 相应、对应的
 
-事实上\chardef用于实现不代表寄存器本身的定义控制序列，但是它只能用于数字。因此在定义了
+使用 \cs{chardef} 意味着定义控制序列不代表寄存器本身，而仅代表它的编号。因此在定义了
 The fact that \chardef is used implies that the defined control sequence does not stand for the register itself, but only for its number. Thus after
 
 > \newbox\MyBox
@@ -133,7 +133,7 @@ it is necessary to write
 Leaving out the \box means that the character in the current font with number \MyBox is `typeset`. 
 # typeset: arrange the type or process the data for (text that is to be printed). 排字
 
-\chardef 在第三章中会详细设计。
+\chardef 在第三章中会详细叙述。
 The \chardef command is `treated further in` Chapter 3.
 # treated further: 进一步处理
 
@@ -166,7 +166,7 @@ Results that are to be passed from one call to another should
 # reside: have one's permanent home in a particular place 处于
 # specifically: 特别的
 
-注意到计数0~9号寄存器用于div文件的页面标记(间33章)，因此对这些寄存器不应有全局的复制。
+注意到计数0~9号寄存器用于div文件的页面标记(间33章)，因此对这些寄存器不应有全局的赋值。
 Note that count registers 0–9 are used for page `identification` in the dvi file (see Chapter 33), so no global `assignments` to these should be made.
 # identification: 识别、
 # assignments: 分配、指派
