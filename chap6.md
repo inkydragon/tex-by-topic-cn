@@ -89,7 +89,8 @@ If this list is built in unrestricted horizontal mode, it will later be broken i
 水平列表的每一个元素都是以下各项之一：
 Each element of a horizontal list is one of the following:
 
-\begin{itemize} \item 一个盒子(一个字符、合字、\cs{vrule} 或一个 \gr{box}))，
+\begin{itemize} 
+\item 一个盒子(一个字符、合字、\cs{vrule} 或一个 \gr{box}))，
 a box (a character, `ligature`, \cs{vrule},
 or a \gr{box}),
 \item 
@@ -137,7 +138,7 @@ Stacking material can take place inside a vertical box, but the items that are s
 In the `latter` case TEX is in vertical mode; in the former case, inside a vertical box, TEX operates in internal vertical mode.
 
 
-在竖直模式中队友的材料都会加进竖直列表里。
+在竖直模式中所有的材料都会加进竖直列表里。
 In vertical mode all material is added to a vertical list. 
 
 如果这个列表在内部竖直模式中构建，在页面生成时，它会被分解。
@@ -147,7 +148,7 @@ If this list is built in external vertical mode, it will later be broken when pa
 Each element of a vertical list is one of the following:
 
 \begin{itemize}
-\item 一个盒子
+\item 一个盒子(水平或竖直盒子或一个 \cs{hrule})
 a box (a horizontal or vertical box or an \cs{hrule}),
 \item 一个延迟操作
 a whatsit,
