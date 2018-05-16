@@ -23,7 +23,7 @@
 %at the horizontal and vertical modes, the kinds of objects
 %that can occur in the corresponding lists, and the
 %commands that are exclusive for one mode or the other. 
-在处理文件时，\TeX\ 总处于某种模式(\indexterm{mode})。
+在处理文件时，\TeX\ 总处于某种模式(\indexterm{mode/模式})。
 一共有六种模式，可划分为三类：
 \begin{enumerate}
 \item 水平模式和受限水平模式，
@@ -82,7 +82,7 @@
 %are different from the internal states of \TeX's input processor
 %(see page~\pageref{input:states}).
 当不需要处理数学排版时，\TeX\ 处于水平模式或竖直模式中，
-分别构建水平或竖直列表。
+分别构建水平列表或竖直列表。
 水平模式一般用来生成一行行的文字；
 竖直模式则用来将一行行文字组成的段落堆到其他段落上。
 注意！这些模式和 \TeX\ 输入处理器的内部状态
@@ -99,7 +99,7 @@
 %if the text is in an \cs{hbox} there is only one line
 %of text, and the corresponding mode is the restricted
 %horizontal mode.
-水平模式(\indextermbus{horizontal}{mode})的主要用来构建一行行的文字。
+水平模式(\indextermbus{horizontal/水平}{mode/模式})的主要用来构建一行行的文字。
 页面上的文字和 \cs{vbox} 或 \cs{vtop} 中的文字在水平模式中构建
 (这也许叫做“段落模式”)；
 如果 \cs{hbox} 中仅仅有一行文字，则对应的模式为受限水平模式。
@@ -128,7 +128,7 @@
 %are called that, because they disappear in
 %a break. Breaking of horizontal
 %lists is discussed in Chapter~\ref{line:break}.
-水平列表(\indextermbus{horizontal}{list})的每一个元素都是以下各项之一：
+水平列表(\indextermbus{horizontal/水平}{list/列表})的每一个元素都是以下各项之一：
 \begin{itemize}
   \item 一个盒子(一个字符、合字、\cs{vrule} 或一个 \gr{box})，
   \item 一个软换行
@@ -163,7 +163,7 @@
 %\TeX\ is in vertical mode; in the former case, inside a
 %vertical box, \TeX\ operates in internal vertical mode.
 堆叠材料可以在竖直盒子内部进行，但这些堆起来的项目也可以在页面上单独出现。
-前一种位于一个竖直盒子内部，
+前一种情况位于一个竖直盒子内部，
 \TeX\ 会在内部竖直模式下操作；而后一种情况下 \TeX\ 将处于竖直模式中。
 
 %In vertical mode all material is added to a vertical list.
@@ -182,7 +182,7 @@
 %The items in the last point are all discardable.
 %Breaking of vertical lists
 %is discussed in Chapter~\ref{page:break}.
-竖直列表(\indextermbus{vertical}{list})的每一个元素都是以下各项之一：
+竖直列表(\indextermbus{vertical/竖直}{list/列表})的每一个元素都是以下各项之一：
 \begin{itemize}
   \item 一个盒子(水平或竖直盒子或一个 \cs{hrule})
   \item 一个延迟操作，
