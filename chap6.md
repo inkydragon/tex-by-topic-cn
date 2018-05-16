@@ -245,3 +245,56 @@ The connection between boxes and modes is explored below;
 
 关于规则和模式的联系，详见第 \ref{rules} 章。
 see Chapter9 for more on the connection between rules and modes
+
+
+
+
+# 6.3 The internal modes
+
+The restricted horizontal mode and internal vertical mode are those variants of horizontal mode and vertical mode that hold inside an \hbox and \vbox (or \vtop or \vcenter) respectively. 
+
+However, restricted horizontal mode is rather more restricted in nature than internal vertical mode. 
+
+The third internal mode is non-display math mode (see Chapter 23).
+
+
+
+
+# 6.3.1 Restricted horizontal mode
+
+The main difference between restricted horizontal mode, the mode in an \hbox, and unrestricted horizontal mode, the mode in which paragraphs in vertical boxes and on the page are built, is that you cannot break out of restricted horizontal mode: \par does nothing in this mode. 
+
+Furthermore, a ⟨vertical command ⟩ in restricted horizontal mode gives an error. 
+
+In unrestricted horizontal mode it would cause a \par token to be inserted and vertical mode to be entered (see also Chapter 17).
+
+
+
+
+
+# 6.3.2 Internal vertical mode
+
+
+Internal vertical mode, the vertical mode inside a \vbox, is a lot like external vertical mode, the mode in which pages are built. 
+
+A ⟨horizontal command⟩ in internal vertical mode, for instance, is perfectly valid: TEX then starts building a paragraph in unrestricted horizontal mode.
+
+
+
+One difference is that the commands \unskip and \unkern have no effect in external vertical mode, and \lastbox is always empty in external vertical mode. 
+
+See further pages 58 and 102.
+
+
+
+The entries of alignments (see Chapter 25) are processed in internal modes: 
+
+restricted horizontal mode for the entries of an \halign, and internal vertical mode for the entries of a \valign. 
+
+The material in \vadjust and \insert items is also processed in internal vertical mode; furthermore, TEX enters this mode when processing the \output token list.
+
+
+
+The commands \end and \dump (the latter exists only in IniTEX) are not allowed in internal vertical mode; 
+
+furthermore, \dump is not allowed inside a group (see Chapter 33).
