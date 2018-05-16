@@ -94,14 +94,15 @@ a box (a character, `ligature`, \cs{vrule},
 or a \gr{box}),
 \item 
 a `discretionary` break,
-\item 
+\item 一个延迟操作(见第r~\ref{io}章)
 a whatsit (see Chapter~\ref{io}),
-\item 由 \cs{mark}, \cs{vadjust} 或 \cs{insert} 闭合的数字化材料，
+# Whatsits: when are they used in practice? https://tex.stackexchange.com/questions/43152/whatsits-when-are-they-used-in-practice
+\item 由 \cs{mark}, \cs{vadjust} 或 \cs{insert} 闭合的竖直材料，
 vertical material enclosed in \cs{mark},
 \cs{vadjust}, or \cs{insert},
 \item 
 \mdqon
-活动铅空或目录连接点、铅空、断词惩罚或数学模式开/""关符号
+活动铅空或目录连接符、铅空、断行惩罚或数学模式开/""关符号
 glue or leaders, a kern, a penalty, or a math-on/""off item.
 \mdqoff
 \end{itemize}
@@ -121,42 +122,57 @@ Breaking of horizontal lists is discussed in Chapter 19.
 ### 6.1.2 Vertical mode
 竖直模式
 
-
+竖直模式用于将一个项目堆到另一个上。
 Vertical mode can be used to stack items on top of one another. 
 
+大多数时候，这些项目是包含段落行的盒子。
 Most of the time, these items are boxes containing the lines of paragraphs.
 
 
 
-
+堆叠材料可以在竖直盒子内部进行，但这些堆起来的项目也可以在页面上单独出现。
 Stacking material can take place inside a vertical box, but the items that are stacked can also appear by themselves on the page. 
 
-In the latter case TEX is in vertical mode; in the former case, inside a vertical box, TEX operates in internal vertical mode.
+后一种情况TeX将处于竖直模式中；而前一种位于一个竖直盒子内部，TeX会在内部竖直模式下操作。
+In the `latter` case TEX is in vertical mode; in the former case, inside a vertical box, TEX operates in internal vertical mode.
 
 
+在竖直模式中队友的材料都会加进竖直列表里。
+In vertical mode all material is added to a vertical list. 
 
-In vertical mode all material is added to a vertical list. If this list is built in external vertical mode, it will later be broken when pages are formed.
+如果这个列表在内部竖直模式中构建，在页面生成时，它会被分解。
+If this list is built in external vertical mode, it will later be broken when pages are formed.
 
+竖直列表的每一个元素都是以下各项之一：
 Each element of a vertical list is one of the following:
 
-• a box (a horizontal or vertical box or an \hrule),
+\begin{itemize}
+\item 一个盒子
+a box (a horizontal or vertical box or an \cs{hrule}),
+\item 一个延迟操作
+a whatsit,
+\item 一个标记
+a mark,
+\item 活动铅空或目录连接符、铅空或断行惩罚。
+glue or leaders, a kern, or a penalty.
+\end{itemize}
 
-• a whatsit,
-
-• a mark,
-
-• glue or leaders, a kern, or a penalty.
-
+列表最后一点中的项目都是可丢弃的。
 The items in the last point are all discardable. 
 
-Breaking of vertical lists is 6.2 Horizontal and vertical commands 75 discussed in Chapter 27.
+竖直列表的断行将在第~\ref{page:break}章讨论。
+Breaking of vertical lists is  discussed in Chapter 27.
 
 
+在竖直列表的开始处有一些特殊条件需要注意：
+There are a few `exceptional conditions` at the beginning of a vertical list:
 
-There are a few exceptional conditions at the beginning of a vertical list:
-
+\prevdepth 的值被设为 -1000pt。
 the value of \prevdepth is set to -1000pt. 
 
+此外，在内部竖直列表的顶端没有附加 \parskip 的可变铅空。
 Furthermore, no \parskip glue is added at the top of an internal vertical list;
 
+在主竖直列表的顶端(即“当前页”的顶端)没有附加可变铅空或其他可丢弃的项目，
+\topskip 的可变铅空会在第一个盒子加入列表时加入(见第\ref{page:shape}和~\ref{page:break}章)。
 at the top of the main vertical list (the top of the ‘current page’) no glue or other discardable items are added, and \topskip glue is added when the first box is placed on this list (see Chapters 26 and 27).
