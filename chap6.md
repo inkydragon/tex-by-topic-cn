@@ -181,51 +181,67 @@ at the top of the main vertical list (the top of the ‘current page’) no glue
 
 
 # 6.2 Horizontal and vertical commands
+水平和竖直命令
 
-Some commands are so intrinsically horizontal or vertical in nature thatthey force TEX to go into that mode, if possible. 
+有些命令本质上是“内在”水平或垂直的，如果有可能，它们会强制TEX进入该模式。
+Some commands are so `intrinsically` horizontal or vertical in nature that they force TEX to go into that mode, if possible. 
 
-A command that forces TEX intohorizontal mode is called a⟨horizontal command⟩; 
+能强制 TeX 进入水平模式的命令称作 ⟨horizontal command⟩；
+A command that forces TEX into horizontal mode is called a ⟨horizontal command⟩; 
 
-similarly a command thatforces TEX into vertical mode is called a⟨vertical command⟩.
+类似的能强制 TeX 进入竖直模式的命令称作 ⟨vertical command⟩。
+similarly a command thatforces TEX into vertical mode is called a ⟨vertical command⟩.
 
 
 
-
+但是，并非所有转换都是可行的：
 However, not all transitions are possible: 
 
-TEX can switch from both verti-cal modes to (unrestricted) horizontal mode and back through horizontal andvertical commands, 
+TeX 能从两种竖直模式切换到(无限制的)水平模式，并可以通过水平和竖直命令切换回去，
+TEX can switch from both vertical modes to (unrestricted) horizontal mode and back through horizontal and vertical commands, 
 
-but no transitions to or from restricted horizontal mode arepossible (other than by enclosing horizontal boxes in vertical boxes or the otherway around). 
+但转入或转出受限水平模式的转换均是不可行的
+but no transitions to or from restricted horizontal mode are possible 
 
+(除了在垂直盒子闭合水平盒子或使用其他的方式)。
+(other than by enclosing horizontal boxes in vertical boxes or the otherway around). 
+
+在受限水平模式内使用竖直命令会导致错误；
 A vertical command in restricted horizontal mode thus gives anerror; 
 
+受限水平模式内，\par命令没有效果。
 the\parcommand in restricted horizontal mode has no effect.
 
 
-
-Thehorizontal commandsare the following:
-
+以下是水平命令：
+The horizontal commands are the following:
 
 \label{h:com:list}
 \begin{itemize}
-\item 
+\item 任何 \gr{letter}, \gr{otherchar}, \cs{char}，
+由 \cs{chardef} 或 \cs{noboundary} 定义的控制序列；
 any \gr{letter}, \gr{otherchar}, \cs{char}, 
 a control sequence defined by \cs{chardef}, or \cs{noboundary};
-\item \cs{accent}, \cs{discretionary}, the discretionary
+\item \cs{accent}, \cs{discretionary}, 
+软连词符 \verb|\-| 和 控制空格 \verb|\|\n{\char32}；
+\cs{accent}, \cs{discretionary}, the discretionary
 hyphen~\verb|\-| and control space~\verb|\|\n{\char32};
-\item \cs{unhbox} and \cs{unhcopy};
-\item \cs{vrule} and the
-\gr{horizontal skip} commands
-\cs{hskip}, \cs{hfil}, \cs{hfill}, \cs{hss}, and \cs{hfilneg};
+\item \cs{unhbox} 和 \cs{unhcopy};
+\item \cs{vrule} 和 \gr{horizontal skip} 命令
+\cs{hskip}, \cs{hfil}, \cs{hfill}, \cs{hss}, 和 \cs{hfilneg};
 \item \cs{valign};
-\item math shift (\n\$).
+\item 数学位移 (\n\$)。
+math shift (\n\$).
 \end{itemize}
 
-
+注意！竖直命令不包含 \par；
 Note that the vertical commands do not include\par; 
 
+\cs{indent} 和 \cs{noindent} 也不是水平命令。
 nor are\indentand\noindenthorizontal commands.
 
+下方探讨了盒子和模式的联系；
 The connection between boxes and modes is explored below; 
 
+关于规则和模式的联系，详见第 \ref{rules} 章。
 see Chapter9 for more on the connection between rules and modes
