@@ -176,3 +176,55 @@ Furthermore, no \parskip glue is added at the top of an internal vertical list;
 在主竖直列表的顶端(即“当前页”的顶端)没有附加可变铅空或其他可丢弃的项目，
 \topskip 的可变铅空会在第一个盒子加入列表时加入(见第\ref{page:shape}和~\ref{page:break}章)。
 at the top of the main vertical list (the top of the ‘current page’) no glue or other discardable items are added, and \topskip glue is added when the first box is placed on this list (see Chapters 26 and 27).
+
+
+
+# 6.2 Horizontal and vertical commands
+
+Some commands are so intrinsically horizontal or vertical in nature thatthey force TEX to go into that mode, if possible. 
+
+A command that forces TEX intohorizontal mode is called a⟨horizontal command⟩; 
+
+similarly a command thatforces TEX into vertical mode is called a⟨vertical command⟩.
+
+
+
+
+However, not all transitions are possible: 
+
+TEX can switch from both verti-cal modes to (unrestricted) horizontal mode and back through horizontal andvertical commands, 
+
+but no transitions to or from restricted horizontal mode arepossible (other than by enclosing horizontal boxes in vertical boxes or the otherway around). 
+
+A vertical command in restricted horizontal mode thus gives anerror; 
+
+the\parcommand in restricted horizontal mode has no effect.
+
+
+
+Thehorizontal commandsare the following:
+
+
+\label{h:com:list}
+\begin{itemize}
+\item 
+any \gr{letter}, \gr{otherchar}, \cs{char}, 
+a control sequence defined by \cs{chardef}, or \cs{noboundary};
+\item \cs{accent}, \cs{discretionary}, the discretionary
+hyphen~\verb|\-| and control space~\verb|\|\n{\char32};
+\item \cs{unhbox} and \cs{unhcopy};
+\item \cs{vrule} and the
+\gr{horizontal skip} commands
+\cs{hskip}, \cs{hfil}, \cs{hfill}, \cs{hss}, and \cs{hfilneg};
+\item \cs{valign};
+\item math shift (\n\$).
+\end{itemize}
+
+
+Note that the vertical commands do not include\par; 
+
+nor are\indentand\noindenthorizontal commands.
+
+The connection between boxes and modes is explored below; 
+
+see Chapter9 for more on the connection between rules and modes
