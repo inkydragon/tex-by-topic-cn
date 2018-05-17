@@ -237,11 +237,11 @@ math shift (\n\$).
 以下是 \cindextermbus{竖直}{命令}(\emph{vertical commands}):
 \label{v:com:list}
 \begin{itemize}
-\item \cs{unvbox} and \cs{unvcopy};
-\item \cs{hrule} and the \gr{vertical skip} commands
- \cs{vskip}, \cs{vfil}, \cs{vfill}, \cs{vss}, and \cs{vfilneg};
+\item \cs{unvbox} 和 \cs{unvcopy};
+\item \cs{hrule} 和 \gr{vertical skip} 命令
+ \cs{vskip}, \cs{vfil}, \cs{vfill}, \cs{vss} 和 \cs{vfilneg};
 \item \cs{halign};
-\item \cs{end} and \cs{dump}.
+\item \cs{end} 和 \cs{dump}.
 \end{itemize}
 
 注意！竖直命令不包含 \par；

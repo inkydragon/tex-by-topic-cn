@@ -12,12 +12,10 @@ output
 *.ind
 *.log
 *.out
+*.synctex(busy)
 *.synctex.gz
 *.xdv
 *.bbl
 *.blg
 *.toc
 *.brf
-
-# win tool chain
-*.bat

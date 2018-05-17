@@ -220,8 +220,8 @@
 %forces \TeX\ into vertical mode is called a
 %\gr{vertical command}.
 有些命令本质上是“内在”水平或垂直的，如果有可能，它们会强制 \TeX\ 进入该模式。
-能强制 \TeX\ 进入水平模式的命令称作水平命令(\gr{horizontal command})；
-类似的能强制 \TeX\ 进入竖直模式的命令称作竖直命令(\gr{vertical command})。
+能强制 \TeX\ 进入水平模式的命令称为水平命令 \gr{horizontal command}；
+类似的能强制 \TeX\ 进入竖直模式的命令称作竖直命令 \gr{vertical command}。
 
 %However, not all transitions are possible:
 %\TeX\ can switch from both vertical modes to 
@@ -233,8 +233,8 @@
 %A~vertical command in restricted horizontal mode thus gives
 %an error; the \cs{par} command in restricted horizontal mode
 %has no effect.
-但是，并非所有转换都是可行的：
-\TeX\ 能从两种竖直模式切换到(无限制的)水平模式，并可以通过水平和竖直命令切换回去，
+但是，并非所有的模式转换都是可行的：
+\TeX\ 能从两种竖直模式切换到(无限制的)水平模式，并可以通过水平和竖直命令切换回去。
 但转入或转出受限水平模式的转换均是不可行的(除了在垂直盒子内闭合水平盒子或使用其他的方式)。
 在受限水平模式内使用竖直命令会导致错误；
 受限水平模式内，\cs{par} 命令没有效果。
@@ -253,7 +253,7 @@
 %\item \cs{valign};
 %\item math shift (\n\$).
 %\end{itemize}
-以下是水平命令：\cindextermbus{水平}{命令}(\emph{horizontal commands})
+以下是\cindextermbus{水平}{命令}(\emph{horizontal commands}):
 \label{h:com:list}
 \begin{itemize}
 \item 任何 \gr{letter}, \gr{otherchar}, \cs{char}，
@@ -278,7 +278,7 @@
 %\end{itemize}
 %Note that the vertical commands do not include \cs{par};
 %nor are \cs{indent} and \cs{noindent} horizontal commands.
-以下是 \cindextermbus{竖直}{命令}(\emph{vertical commands}):
+以下是\cindextermbus{竖直}{命令}(\emph{vertical commands}):
 \label{v:com:list}
 \begin{itemize}
 \item \cs{unvbox} 和 \cs{unvcopy};
