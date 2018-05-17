@@ -1,0 +1,12 @@
+1. index
+  ``` tex
+  \def\indexterm#1{\emph{#1}\index{#1}}
+  \def\indextermsub#1#2{\emph{#1 #2}\index{#1!#2}}
+  \def\indextermbus#1#2{\emph{#1 #2}\index{#2!#1}}
+  \def\cindextermsub#1#2{\emph{#1#2}\index{#1!#1#2}}
+  \def\cindextermbus#1#2{\emph{#1#2}\index{#2!#1#2}}
+  ```
+
+  考虑两边均双语标注 or 至少文中双语标注
+  e.g. 术语(\emph{term})\index{term/术语}
+  or 术语(\emph{term})\index{术语}
