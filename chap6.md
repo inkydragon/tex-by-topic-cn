@@ -203,7 +203,7 @@ TEX can switch from both vertical modes to (unrestricted) horizontal mode and ba
 但转入或转出受限水平模式的转换均是不可行的
 but no transitions to or from restricted horizontal mode are possible 
 
-(除了在垂直盒子闭合水平盒子或使用其他的方式)。
+(除了在垂直盒子内闭合水平盒子或使用其他的方式)。
 (other than by enclosing horizontal boxes in vertical boxes or the otherway around). 
 
 在受限水平模式内使用竖直命令会导致错误；
@@ -232,6 +232,16 @@ hyphen~\verb|\-| and control space~\verb|\|\n{\char32};
 \item \cs{valign};
 \item 数学位移 (\n\$)。
 math shift (\n\$).
+\end{itemize}
+
+以下是 \cindextermbus{竖直}{命令}(\emph{vertical commands}):
+\label{v:com:list}
+\begin{itemize}
+\item \cs{unvbox} and \cs{unvcopy};
+\item \cs{hrule} and the \gr{vertical skip} commands
+ \cs{vskip}, \cs{vfil}, \cs{vfill}, \cs{vss}, and \cs{vfilneg};
+\item \cs{halign};
+\item \cs{end} and \cs{dump}.
 \end{itemize}
 
 注意！竖直命令不包含 \par；
