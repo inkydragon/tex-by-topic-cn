@@ -322,3 +322,95 @@ The commands \end and \dump (the latter exists only in IniTEX) are not allowed i
 
 此外  \dump 不允许在组内使用(见底 章)
 furthermore, \dump is not allowed inside a group (see Chapter 33).
+
+
+
+
+
+# 6.4 Boxes and modes
+
+There are horizontal and vertical boxes, and there is horizontal and vertical mode. 
+
+Not surprisingly, there is a connection between the boxes and the modes.
+
+One can ask about this connection in two ways.
+
+
+
+
+# 6.4.1 What box do you use in what mode?
+
+
+This is the wrong question. Both horizontal and vertical boxes can be used in both horizontal and vertical mode. 
+
+Their placement is determined by the prevailing mode at that moment.
+
+
+
+
+# 6.4.2 What mode holds in what box?
+
+
+This is the right question. When an \hbox starts, TEX is in restricted horizontal mode. 
+
+Thus everything in a horizontal box is lined up horizontally.
+
+
+
+When a \vbox is started, TEX is in internal vertical mode. Boxes of both kinds and other items are then stacked on top of each other.
+
+
+
+
+# 6.4.3 Mode-dependent behaviour of boxes
+
+Any ⟨box⟩ (see Chapter 5 for the full definition) can be used in horizontal, vertical, and math mode. 
+
+Unboxing commands, however, are specific for horizontal or vertical mode. 
+
+Both \unhbox and \unhcopy are ⟨horizontal command⟩s, so they can make TEX switch from vertical to horizontal mode; 
+
+both \unvbox and \unvcopy are ⟨vertical command⟩s, so they can make TEX switch from horizontal to vertical mode.
+
+
+
+In horizontal mode the \spacefactor is set to 1000 after a box has been placed. 
+
+In vertical mode the \prevdepth is set to the depth of the box placed.
+
+Neither statement holds for unboxing commands: after an \unhbox or \unhcopy the spacefactor is not altered, and after \unvbox or \unvcopy the \prevdepth remains unchanged. 
+
+After all, these commands do not add a box, but a piece of a (horizontal or vertical) list.
+
+
+
+The operations \raise and \lower can only be applied to a box in horizontal mode; 
+
+similarly, \moveleft and \moveright can only be applied in vertical mode.
+
+
+
+
+# 6.5 Modes and glue
+
+Both in horizontal and vertical mode TEX can insert glue items the size of which is determined by the preceding object in the list.
+
+
+
+For horizontal mode the amount of glue that is inserted for a space token depends on the \spacefactor of the previous object in the list. 
+
+This is treated in Chapter 20.
+
+
+
+In vertical mode TEX inserts glue to keep boxes at a certain distance from each other. 
+
+This glue is influenced by the height of the current item and the depth of the previous one. 
+
+The depth of items is recorded in the \prevdepth parameter (see Chapter 15).
+
+
+
+The two quantities \prevdepth and \spacefactor use the same internal register of TEX. 
+
+Thus the \prevdepth can be used or asked only in vertical mode, and the \spacefactor only in horizontal mode.
