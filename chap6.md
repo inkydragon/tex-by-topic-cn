@@ -3,8 +3,8 @@
 # Vertical: 竖直/垂直
 水平模式和竖直模式
 
-在处理文件的任何时候，TeX 都处于某种状态。
-At any point in its processing TEX is in some mode. 
+在处理文件的任何时候，\TeX\  都处于某种状态。
+At any point in its processing \TeX\  is in some mode. 
 
 共有六种模式，可划分为三类：
 There are six modes, divided in three categories:
@@ -49,8 +49,8 @@ Here we shall look at the horizontal and vertical modes, the kinds of objects th
 ## 6.1 Horizontal and vertical mode
 水平模式和竖直模式
 
-当不需要处理数学排版时，TeX 处于水平模式或竖直模式中，分别构建水平或竖直列表。
-When not typesetting mathematics, TEX is in horizontal or vertical mode, building horizontal or vertical lists `respectively`. 
+当不需要处理数学排版时，\TeX\  处于水平模式或竖直模式中，分别构建水平或竖直列表。
+When not typesetting mathematics, \TeX\  is in horizontal or vertical mode, building horizontal or vertical lists `respectively`. 
 # respectively: separately or individually 分别
 
 水平模式一般用来生成一行行的文字；
@@ -60,8 +60,8 @@ Horizontal mode is typically used to make lines of text;
 vertical mode is typically used to `stack` the lines of a paragraph on top of each other. 
 # stack: arrange (a number of things) in a pile, typically a neat one. 堆/叠
 
-注意！这些模式和 TeX输入处理器的内部状态(见25页)并不相同。
-Note that these modes are different from the internal states of TEX’s input processor (see page 25).
+注意！这些模式和 \TeX\ 输入处理器的内部状态(见25页)并不相同。
+Note that these modes are different from the internal states of \TeX\ ’s input processor (see page 25).
 
 
 
@@ -75,8 +75,8 @@ The main activity in horizontal mode is building lines of text.
 页面上的文字和\vbox or \vtop中的文字在水平模式中构建(这也许叫做“段落模式”)；
 Text on the page and text in a \vbox or \vtop is built in horizontal mode (this might be called ‘paragraph mode’); 
 
-如果\hbox 中仅仅有一行文字，则对应的模式为受限水平模式。
-if the text is in an \hbox there is only one line of text, and the corresponding mode is the restricted horizontal mode.
+如果\cs{hbox} 中仅仅有一行文字，则对应的模式为受限水平模式。
+if the text is in an \cs{hbox} there is only one line of text, and the corresponding mode is the restricted horizontal mode.
 
 
 
@@ -262,8 +262,8 @@ see Chapter9 for more on the connection between rules and modes
 # 6.3 The internal modes
 内部模式
 
-受限水平模式是 \hbox 内部的水平模式的变种；而内部竖直模式是\vbox (or \vtop or \vcenter) 内部的竖直模式的变种。
-The restricted horizontal mode and internal vertical mode are those variants of horizontal mode and vertical mode that hold inside an \hbox and \vbox (or \vtop or \vcenter) respectively. 
+受限水平模式是 \cs{hbox} 内部的水平模式的变种；而内部竖直模式是\vbox (or \vtop or \vcenter) 内部的竖直模式的变种。
+The restricted horizontal mode and internal vertical mode are those variants of horizontal mode and vertical mode that hold inside an \cs{hbox} and \vbox (or \vtop or \vcenter) respectively. 
 
 本质上说，受限水平模式相对于内部竖直模式限制更多。
 However, restricted horizontal mode is rather more restricted in nature than internal vertical mode. 
@@ -277,8 +277,8 @@ The third internal mode is non-display math mode (see Chapter 23).
 # 6.3.1 Restricted horizontal mode
 受限水平模式
 
-对于水平模式，受限(\hbox的模式)与不受限(正在构建页面和竖直盒子中段落的模式)的最大区别是：你不能退出受限水平模式，而且 \par再这个模式中不起作用。
-The main difference between restricted horizontal mode, the mode in an \hbox, and unrestricted horizontal mode, the mode in which paragraphs in vertical boxes and on the page are built, is that you cannot break out of restricted horizontal mode: \par does nothing in this mode. 
+对于水平模式，受限(\cs{hbox}的模式)与不受限(正在构建页面和竖直盒子中段落的模式)的最大区别是：你不能退出受限水平模式，而且 \par再这个模式中不起作用。
+The main difference between restricted horizontal mode, the mode in an \cs{hbox}, and unrestricted horizontal mode, the mode in which paragraphs in vertical boxes and on the page are built, is that you cannot break out of restricted horizontal mode: \par does nothing in this mode. 
 
 此外，受限水平模式中的 ⟨vertical command ⟩ 会导致错误。
 Furthermore, a ⟨vertical command ⟩ in restricted horizontal mode gives an error. 
@@ -296,8 +296,8 @@ In unrestricted horizontal mode it would cause a \par token to be inserted and v
 内部竖直模式即 \vbox 内的竖直模式，很像构建页面时使用的外部竖直模式。
 Internal vertical mode, the vertical mode inside a \vbox, is a lot like external vertical mode, the mode in which pages are built. 
 
-内部竖直模式内的 ⟨horizontal command⟩ 是完全有效的，例如：TeX 开始以无限制水平模式构建段落。
-A ⟨horizontal command⟩ in internal vertical mode, for instance, is perfectly valid: TEX then starts building a paragraph in unrestricted horizontal mode.
+内部竖直模式内的 ⟨horizontal command⟩ 是完全有效的，例如：\TeX\  开始以无限制水平模式构建段落。
+A ⟨horizontal command⟩ in internal vertical mode, for instance, is perfectly valid: \TeX\  then starts building a paragraph in unrestricted horizontal mode.
 
 
 内部和外部竖直模式的一个区别是：在内部竖直模式中，\unskip 和 \unkern 命令没有效果，并且\lastbox 总是空的。
@@ -313,8 +313,8 @@ The entries of alignments (see Chapter 25) are processed in internal modes:
 \halign 的项使用受限水平模式，而\valign的项使用内部垂直模式。
 restricted horizontal mode for the entries of an \halign, and internal vertical mode for the entries of a \valign. 
 
-\vadjust 的材料和\insert 的项也在内部竖直模式内处理；此外，TeX 在处理\output 记号序列时也会进入这个模式。
-The material in \vadjust and \insert items is also processed in internal vertical mode; furthermore, TEX enters this mode when processing the \output token list.
+\vadjust 的材料和\insert 的项也在内部竖直模式内处理；此外，\TeX\  在处理\output 记号序列时也会进入这个模式。
+The material in \vadjust and \insert items is also processed in internal vertical mode; furthermore, \TeX\  enters this mode when processing the \output token list.
 
 
 \end 和 \dump 命令不允许出现在内部竖直模式中(后者仅存在于 IniTEX 中)
@@ -328,11 +328,15 @@ furthermore, \dump is not allowed inside a group (see Chapter 33).
 
 
 # 6.4 Boxes and modes
+盒子与模式
 
+TeX 有水平和竖直盒子，也有水平和竖直模式。
 There are horizontal and vertical boxes, and there is horizontal and vertical mode. 
 
+毫不奇怪，盒子与模式之间有关系。
 Not surprisingly, there is a connection between the boxes and the modes.
 
+你可能会提出一下问题。
 One can ask about this connection in two ways.
 
 
@@ -351,13 +355,13 @@ Their placement is determined by the prevailing mode at that moment.
 # 6.4.2 What mode holds in what box?
 
 
-This is the right question. When an \hbox starts, TEX is in restricted horizontal mode. 
+This is the right question. When an \cs{hbox} starts, \TeX\  is in restricted horizontal mode. 
 
 Thus everything in a horizontal box is lined up horizontally.
 
 
 
-When a \vbox is started, TEX is in internal vertical mode. Boxes of both kinds and other items are then stacked on top of each other.
+When a \cs{vbox} is started, \TeX\  is in internal vertical mode. Boxes of both kinds and other items are then stacked on top of each other.
 
 
 
@@ -368,9 +372,9 @@ Any ⟨box⟩ (see Chapter 5 for the full definition) can be used in horizontal,
 
 Unboxing commands, however, are specific for horizontal or vertical mode. 
 
-Both \unhbox and \unhcopy are ⟨horizontal command⟩s, so they can make TEX switch from vertical to horizontal mode; 
+Both \unhbox and \unhcopy are ⟨horizontal command⟩s, so they can make \TeX\  switch from vertical to horizontal mode; 
 
-both \unvbox and \unvcopy are ⟨vertical command⟩s, so they can make TEX switch from horizontal to vertical mode.
+both \unvbox and \unvcopy are ⟨vertical command⟩s, so they can make \TeX\  switch from horizontal to vertical mode.
 
 
 
@@ -392,8 +396,10 @@ similarly, \moveleft and \moveright can only be applied in vertical mode.
 
 
 # 6.5 Modes and glue
+模型和伸缩胶
 
-Both in horizontal and vertical mode TEX can insert glue items the size of which is determined by the preceding object in the list.
+
+Both in horizontal and vertical mode \TeX\  can insert glue items the size of which is determined by the preceding object in the list.
 
 
 
@@ -403,7 +409,7 @@ This is treated in Chapter 20.
 
 
 
-In vertical mode TEX inserts glue to keep boxes at a certain distance from each other. 
+In vertical mode \TeX\  inserts glue to keep boxes at a certain distance from each other. 
 
 This glue is influenced by the height of the current item and the depth of the previous one. 
 
@@ -411,6 +417,6 @@ The depth of items is recorded in the \prevdepth parameter (see Chapter 15).
 
 
 
-The two quantities \prevdepth and \spacefactor use the same internal register of TEX. 
+The two quantities \prevdepth and \spacefactor use the same internal register of \TeX\ . 
 
 Thus the \prevdepth can be used or asked only in vertical mode, and the \spacefactor only in horizontal mode.
