@@ -13,7 +13,7 @@ There are six modes, divided in three categories:
 1. horizontal mode and `restricted` horizontal mode,
 # restricted: limited in extent 限制
 
-2. 竖直模式和内部垂直模式；和
+2. 竖直模式和内部竖直模式；和
 2. vertical mode and `internal` vertical mode, and
 # internal: 内置/内部
 
@@ -183,7 +183,7 @@ at the top of the main vertical list (the top of the ‘current page’) no glue
 # 6.2 Horizontal and vertical commands
 水平和竖直命令
 
-有些命令本质上是“内在”水平或垂直的，如果有可能，它们会强制TEX进入该模式。
+有些命令本质上是“内在”水平或竖直的，如果有可能，它们会强制TEX进入该模式。
 Some commands are so `intrinsically` horizontal or vertical in nature that they force TEX to go into that mode, if possible. 
 
 能强制 TeX 进入水平模式的命令称作 ⟨horizontal command⟩；
@@ -203,7 +203,7 @@ TEX can switch from both vertical modes to (unrestricted) horizontal mode and ba
 但转入或转出受限水平模式的转换均是不可行的
 but no transitions to or from restricted horizontal mode are possible 
 
-(除了在垂直盒子内闭合水平盒子或使用其他的方式)。
+(除了在竖直盒子内闭合水平盒子或使用其他的方式)。
 (other than by enclosing horizontal boxes in vertical boxes or the otherway around). 
 
 在受限水平模式内使用竖直命令会导致错误；
@@ -260,22 +260,30 @@ see Chapter9 for more on the connection between rules and modes
 
 
 # 6.3 The internal modes
+内部模式
 
+受限水平模式是 \hbox 内部的水平模式的变种；而内部竖直模式是\vbox (or \vtop or \vcenter) 内部的竖直模式的变种。
 The restricted horizontal mode and internal vertical mode are those variants of horizontal mode and vertical mode that hold inside an \hbox and \vbox (or \vtop or \vcenter) respectively. 
 
+本质上说，受限水平模式相对于内部竖直模式限制更多。
 However, restricted horizontal mode is rather more restricted in nature than internal vertical mode. 
 
+第三种内内部模式是非显示的数学模式(见 章)
 The third internal mode is non-display math mode (see Chapter 23).
 
 
 
 
 # 6.3.1 Restricted horizontal mode
+受限水平模式
 
+对于水平模式，受限(\hbox的模式)与不受限(正在构建页面和竖直盒子中段落的模式)的最大区别是：你不能退出受限水平模式，而且 \par再这个模式中不起作用。
 The main difference between restricted horizontal mode, the mode in an \hbox, and unrestricted horizontal mode, the mode in which paragraphs in vertical boxes and on the page are built, is that you cannot break out of restricted horizontal mode: \par does nothing in this mode. 
 
+此外，受限水平模式中的 ⟨vertical command ⟩ 会导致错误。
 Furthermore, a ⟨vertical command ⟩ in restricted horizontal mode gives an error. 
 
+再非受限水平模式中，这样做会插入一个 \par 记号，并进入竖直模式(详见第 章)。
 In unrestricted horizontal mode it would cause a \par token to be inserted and vertical mode to be entered (see also Chapter 17).
 
 
@@ -283,28 +291,34 @@ In unrestricted horizontal mode it would cause a \par token to be inserted and v
 
 
 # 6.3.2 Internal vertical mode
+内部竖直模式
 
-
+内部竖直模式即 \vbox 内的竖直模式，很像构建页面时使用的外部竖直模式。
 Internal vertical mode, the vertical mode inside a \vbox, is a lot like external vertical mode, the mode in which pages are built. 
 
+内部竖直模式内的 ⟨horizontal command⟩ 是完全有效的，例如：TeX 开始以无限制水平模式构建段落。
 A ⟨horizontal command⟩ in internal vertical mode, for instance, is perfectly valid: TEX then starts building a paragraph in unrestricted horizontal mode.
 
 
-
+内部和外部竖直模式的一个区别是：在内部竖直模式中，\unskip 和 \unkern 命令没有效果，并且\lastbox 总是空的。
 One difference is that the commands \unskip and \unkern have no effect in external vertical mode, and \lastbox is always empty in external vertical mode. 
 
+详见第 \pageref{lastbox} 和 \pageref{unskip}。
 See further pages 58 and 102.
 
 
-
+输入的对齐在内部模式中处理(见第 章)。
 The entries of alignments (see Chapter 25) are processed in internal modes: 
 
+\halign 的项使用受限水平模式，而\valign的项使用内部垂直模式。
 restricted horizontal mode for the entries of an \halign, and internal vertical mode for the entries of a \valign. 
 
+\vadjust 的材料和\insert 的项也在内部竖直模式内处理；此外，TeX 在处理\output 记号序列时也会进入这个模式。
 The material in \vadjust and \insert items is also processed in internal vertical mode; furthermore, TEX enters this mode when processing the \output token list.
 
 
-
+\end 和 \dump 命令不允许出现在内部竖直模式中(后者仅存在于 IniTEX 中)
 The commands \end and \dump (the latter exists only in IniTEX) are not allowed in internal vertical mode; 
 
+此外  \dump 不允许在组内使用(见底 章)
 furthermore, \dump is not allowed inside a group (see Chapter 33).
