@@ -330,66 +330,83 @@ furthermore, \dump is not allowed inside a group (see Chapter 33).
 # 6.4 Boxes and modes
 盒子与模式
 
-TeX 有水平和竖直盒子，也有水平和竖直模式。
+TeX 有水平盒子和竖直盒子，也有水平模式和竖直模式。
 There are horizontal and vertical boxes, and there is horizontal and vertical mode. 
 
-毫不奇怪，盒子与模式之间有关系。
+毫不奇怪，盒子与模式之间肯定有关系。
 Not surprisingly, there is a connection between the boxes and the modes.
 
-你可能会提出一下问题。
+你可能会有以下疑问。
 One can ask about this connection in two ways.
 
 
 
 
 # 6.4.1 What box do you use in what mode?
+某种模式下应该用哪种盒子？
 
-
+这个问法不对。水平盒子和竖直盒子均可以用在水平模式和竖直模式中。
 This is the wrong question. Both horizontal and vertical boxes can be used in both horizontal and vertical mode. 
 
-Their placement is determined by the prevailing mode at that moment.
+它们的位置取决于那一刻的状态。
+Their placement is determined by the `prevailing mode` at that moment.
 
 
 
 
 # 6.4.2 What mode holds in what box?
+某个盒子里应该用哪种模式？
 
-
+这才是正确的问法。但一个 \cs{hbox} 开始时，\TeX\ 处于受限水平模式。
 This is the right question. When an \cs{hbox} starts, \TeX\  is in restricted horizontal mode. 
 
+这就是为什么在水平盒子里，所有的东西都呈水平线性排列。
 Thus everything in a horizontal box is lined up horizontally.
 
 
+当一个 \cs{vbox} 开始时，\TeX\ 进入内部竖直模式。
+When a \cs{vbox} is started, \TeX\  is in internal vertical mode. 
 
-When a \cs{vbox} is started, \TeX\  is in internal vertical mode. Boxes of both kinds and other items are then stacked on top of each other.
+两种模式下的盒子和其它的项目都会一个摞一个的堆叠起来。
+Boxes of both kinds and other items are then stacked on top of each other.
 
 
 
 
 # 6.4.3 Mode-dependent behaviour of boxes
+盒子的模式无关的行为
 
+任何盒子 ⟨box⟩ (详细定义见第  章)都能用于水平、竖直和数学模式中。
 Any ⟨box⟩ (see Chapter 5 for the full definition) can be used in horizontal, vertical, and math mode. 
 
+但是，解包命令对于水平或竖直模式是特定的。
 Unboxing commands, however, are specific for horizontal or vertical mode. 
 
+\unhbox and \unhcopy 都是 ⟨horizontal command⟩，所以它们能使 \TeX\ 从竖直模式切换成水平模式。
 Both \unhbox and \unhcopy are ⟨horizontal command⟩s, so they can make \TeX\  switch from vertical to horizontal mode; 
 
+\unvbox and \unvcopy 都是 ⟨vertical command⟩，所以它们能使 \TeX\ 从水平模式切换成竖直模式。
 both \unvbox and \unvcopy are ⟨vertical command⟩s, so they can make \TeX\  switch from horizontal to vertical mode.
 
 
 
+水平模式中，在放置了一个盒子之后 \spacefactor 被设定为 1000.
 In horizontal mode the \spacefactor is set to 1000 after a box has been placed. 
 
+竖直模式中\prevdepth被设定为的字放置时的深度。
 In vertical mode the \prevdepth is set to the depth of the box placed.
 
+这两个语句都不支持解包命令：在 \unhbox or \unhcopy 之后spacefactor的值不变；并且在 \unvbox or \unvcopy 之后\prevdepth保持原值。
 Neither statement holds for unboxing commands: after an \unhbox or \unhcopy the spacefactor is not altered, and after \unvbox or \unvcopy the \prevdepth remains unchanged. 
 
+毕竟，这些命令并不会添加一个新的盒子，只是添加了水平或竖直列表的一部分。
 After all, these commands do not add a box, but a piece of a (horizontal or vertical) list.
 
 
-
+\raise and \lower 操作只能用于水平模式中的盒子。
 The operations \raise and \lower can only be applied to a box in horizontal mode; 
 
+类似的，\moveleft and \moveright 之恩那个用于竖直模式中的盒子.
 similarly, \moveleft and \moveright can only be applied in vertical mode.
 
 
