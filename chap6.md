@@ -437,3 +437,53 @@ The depth of items is recorded in the \prevdepth parameter (see Chapter 15).
 The two quantities \prevdepth and \spacefactor use the same internal register of \TeX\ . 
 
 Thus the \prevdepth can be used or asked only in vertical mode, and the \spacefactor only in horizontal mode.
+
+
+
+
+
+# 6.7 Testing modes
+
+The three conditionals \ifhmode, \ifvmode, and \ifinner can distinguish between the four modes of TEX that are not math modes. 
+
+The \ifinner test is true if TEX is in restricted horizontal mode or internal vertical mode (or in non-display math mode). 
+
+Exceptional condition: during a \write TEX is in a ‘no mode’ state. The tests \ifhmode, \ifvmode, and \ifmmode are then all false.
+
+
+
+
+Inspection of all current lists, including the ‘recent contributions’ (see Chapter 27), is possible through the command \showlists. 
+
+This command writes to the log file the contents of all lists that are being built at the moment the command is given.
+
+
+
+
+Consider the example
+
+
+Here the first paragraph has been broken into two lines, and these have been added to the current page. 
+
+The second paragraph has not been concluded or broken into lines.
+
+
+The log file shows the following. 
+
+\TeX\ was busy building a paragraph (starting with an indentation box \n{20pt} wide):
+
+
+
+This paragraph was inside a vertical box:
+
+
+The vertical box was in  a horizontal box, 
+
+
+which was part of an as-yet unfinished paragraph:
+
+
+Note how the infinite glue and the \cs{break} penalty are still part of the horizontal list.
+
+
+Finally, the first paragraph has been broken into lines and added to the current page:
