@@ -441,6 +441,44 @@ Thus the \prevdepth can be used or asked only in vertical mode, and the \spacefa
 
 
 
+# 6.6 Migrating material
+The three control sequences \insert, \mark, and \vadjust can be given in a paragraph (the first two can also occur in vertical mode) to specify migrating material: 
+
+material that will wind up on the surrounding vertical list rather than on the current list. 
+
+Note that this need not be the main vertical list: it can be a vertical box containing a paragraph of text. 
+
+In this case a \mark or \insert command will not reach the page breaking algorithm.
+
+
+
+
+When several migrating items are specified in a certain line of text, their left-to-right order is preserved when they are placed on the surrounding vertical list. 
+
+These items are placed directly after the horizontal box containing the line of text in which they were specified: they come before any penalty or glue items that are automatically inserted (see page 197).
+
+
+
+# 6.6.1 \vadjust
+The command
+\vadjust⟨filler⟩{⟨vertical mode material⟩} is only allowed in horizontal and math modes (but it is not a ⟨horizontal command⟩).
+
+
+Vertical mode material specified by \vadjust is moved from the horizontal list in which the command is given to the surrounding vertical list, directly after the box in which it occurred.
+
+
+
+• In the current line a \vadjust item was placed to put the bullet in the margin.
+
+
+
+Any vertical material in a \vadjust item is processed in internal vertical mode, even though it will wind up on the main vertical list. 
+
+For instance, the \ifinner test is true in a \vadjust, and at the start of the vertical material \prevdepth=-1000pt.
+
+
+
+
 
 # 6.7 Testing modes
 
