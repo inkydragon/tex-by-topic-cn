@@ -415,27 +415,31 @@ similarly, \moveleft and \moveright can only be applied in vertical mode.
 # 6.5 Modes and glue
 模型和伸缩胶
 
-
+在水平模式和竖直模式中，\TeX\ 都能插入一个伸缩胶项目，它的大小由列表里之前的对象决定。
 Both in horizontal and vertical mode \TeX\  can insert glue items the size of which is determined by the preceding object in the list.
 
 
-
+对于水平模式，为一个空格记号插入的伸缩胶的量由列表里前一个量的 \spacefactor 值决定。
 For horizontal mode the amount of glue that is inserted for a space token depends on the \spacefactor of the previous object in the list. 
 
+这会在第 章讨论。
 This is treated in Chapter 20.
 
 
-
+\TeX\ 在竖直模式中插入伸缩胶让盒子之间都保持特定的距离。
 In vertical mode \TeX\  inserts glue to keep boxes at a certain distance from each other. 
 
+伸缩胶会受到当前项高度前一项深度的影响。
 This glue is influenced by the height of the current item and the depth of the previous one. 
 
+项目的深度记录在 \prevdepth 参数中(见第 章)。
 The depth of items is recorded in the \prevdepth parameter (see Chapter 15).
 
 
-
+\prevdepth and \spacefactor 这两个量使用了\TeX\ 中相同的内部寄存器。
 The two quantities \prevdepth and \spacefactor use the same internal register of \TeX\ . 
 
+因此 \prevdepth 只能在竖直模式中使用或请求，\spacefactor 只能用于水平模式中。
 Thus the \prevdepth can be used or asked only in vertical mode, and the \spacefactor only in horizontal mode.
 
 
@@ -443,47 +447,54 @@ Thus the \prevdepth can be used or asked only in vertical mode, and the \spacefa
 
 
 # 6.7 Testing modes
+测试模式
 
+三种条件语句 \ifhmode, \ifvmode, and \ifinner 可以用来区分非数学模式的四种TeX模式。
 The three conditionals \ifhmode, \ifvmode, and \ifinner can distinguish between the four modes of TEX that are not math modes. 
 
+当TeX处于受限水平模式、内部竖直模式或非显示数学模式中时，\ifinner 测试为真。
 The \ifinner test is true if TEX is in restricted horizontal mode or internal vertical mode (or in non-display math mode). 
 
+有一个例外情况：在\write指令执行的时候，TeX处于无模式状态。此时\ifhmode, \ifvmode, and \ifmmode测试都为假。
 Exceptional condition: during a \write TEX is in a ‘no mode’ state. The tests \ifhmode, \ifvmode, and \ifmmode are then all false.
 
 
 
-
+我们可以通过\showlists命令坚持所有列表的值，包括“最近贡献”(见第章)。
 Inspection of all current lists, including the ‘recent contributions’ (see Chapter 27), is possible through the command \showlists. 
 
+这个命令会把执行此命令时，所有正在构建的列表的内容写入日志里。
 This command writes to the log file the contents of all lists that are being built at the moment the command is given.
 
 
 
-
+考虑以下例子
 Consider the example
 
-
+这里第一段被分为两行 ，这两部分被添加进当前页中。
 Here the first paragraph has been broken into two lines, and these have been added to the current page. 
 
+第二段尚未结束，也没有被分为多行。
 The second paragraph has not been concluded or broken into lines.
 
-
+以下是日志的记录。
 The log file shows the following. 
 
+\TeX\ 正在忙于构建一个段落(从一个\n{20pt}宽的缩进盒子开始)
 \TeX\ was busy building a paragraph (starting with an indentation box \n{20pt} wide):
 
 
-
+这个段落处于一个竖直盒子中。
 This paragraph was inside a vertical box:
 
-
+竖直盒子处于一个水平盒子中。
 The vertical box was in  a horizontal box, 
 
-
+而水平盒子又是另一个未完成段落的一部分。
 which was part of an as-yet unfinished paragraph:
 
-
+注意到无限的伸缩胶和断行\cs{break}惩罚值仍然是水平列表的一部分。
 Note how the infinite glue and the \cs{break} penalty are still part of the horizontal list.
 
-
+最终，第一个段落被分为行然后加入当当前页中：
 Finally, the first paragraph has been broken into lines and added to the current page:
