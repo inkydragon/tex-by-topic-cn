@@ -310,7 +310,7 @@ See further pages 58 and 102.
 输入的对齐在内部模式中处理(见第 章)。
 The entries of alignments (see Chapter 25) are processed in internal modes: 
 
-\halign 的项使用受限水平模式，而\valign的项使用内部垂直模式。
+\halign 的项使用受限水平模式，而\valign的项使用内部竖直模式。
 restricted horizontal mode for the entries of an \halign, and internal vertical mode for the entries of a \valign. 
 
 \vadjust 的材料和\insert 的项也在内部竖直模式内处理；此外，\TeX\  在处理\output 记号序列时也会进入这个模式。
@@ -413,7 +413,7 @@ similarly, \moveleft and \moveright can only be applied in vertical mode.
 
 
 # 6.5 Modes and glue
-模型和伸缩胶
+模式和伸缩胶
 
 在水平模式和竖直模式中，\TeX\ 都能插入一个伸缩胶项目，它的大小由列表里之前的对象决定。
 Both in horizontal and vertical mode \TeX\  can insert glue items the size of which is determined by the preceding object in the list.
@@ -446,38 +446,48 @@ Thus the \prevdepth can be used or asked only in vertical mode, and the \spacefa
 
 
 # 6.6 Migrating material
+迁移材料
+
+在一段话中，可以指定三种控制序列 \insert, \mark, and \vadjust(前两个也可以出现在竖直模式中)，用于指定迁移材料：
 The three control sequences \insert, \mark, and \vadjust can be given in a paragraph (the first two can also occur in vertical mode) to specify migrating material: 
 
+材料会在周围的竖直列表而不是当前列表中结束。
 material that will wind up on the surrounding vertical list rather than on the current list. 
 
+注意这并不一定是主竖直列表：也可以是包含一段文字的竖直盒子。
 Note that this need not be the main vertical list: it can be a vertical box containing a paragraph of text. 
 
+本例中\mark or \insert命令不会触发分页算法。
 In this case a \mark or \insert command will not reach the page breaking algorithm.
 
 
 
-
+在特定的文本行中指定了多个的迁移项目后，当它们放置在周围的竖直列表中是，它们从左至右的顺序会保留下来。
 When several migrating items are specified in a certain line of text, their left-to-right order is preserved when they are placed on the surrounding vertical list. 
 
+这些项目直接放置在包含指定文本的水平盒子之后：它们会在任何自动生成的惩罚值或伸缩胶项目之前插入(见第 页)。
 These items are placed directly after the horizontal box containing the line of text in which they were specified: they come before any penalty or glue items that are automatically inserted (see page 197).
 
 
 
 # 6.6.1 \vadjust
+
+命令 \vadjust⟨filler⟩{⟨vertical mode material⟩} 只允许在水平和数学模式中使用(但它不是一个⟨horizontal command⟩)。
 The command
 \vadjust⟨filler⟩{⟨vertical mode material⟩} is only allowed in horizontal and math modes (but it is not a ⟨horizontal command⟩).
 
-
+由 \vadjust 指定的竖直模式材料，将从给出该命令的水平列表中移动到周围的竖直列表中，直接放置在它原本出现的盒子之后。
 Vertical mode material specified by \vadjust is moved from the horizontal list in which the command is given to the surrounding vertical list, directly after the box in which it occurred.
 
 
-
+在当前行中，放置了一个\vadjust项目，它在页边中插入了一个点。
 • In the current line a \vadjust item was placed to put the bullet in the margin.
 
 
-
+\vadjust 项目中的任何竖直材料会在内部竖直模式中处理，即使它会结束主竖直列表。
 Any vertical material in a \vadjust item is processed in internal vertical mode, even though it will wind up on the main vertical list. 
 
+举个例子，在\vadjust中\ifinner测试为真，并且在竖直材料的开头\prevdepth=-1000pt。
 For instance, the \ifinner test is true in a \vadjust, and at the start of the vertical material \prevdepth=-1000pt.
 
 
@@ -498,7 +508,7 @@ Exceptional condition: during a \write TEX is in a ‘no mode’ state. The test
 
 
 
-我们可以通过\showlists命令坚持所有列表的值，包括“最近贡献”(见第章)。
+我们可以通过\showlists命令检查所有列表的值，包括“最近贡献”(见第章)。
 Inspection of all current lists, including the ‘recent contributions’ (see Chapter 27), is possible through the command \showlists. 
 
 这个命令会把执行此命令时，所有正在构建的列表的内容写入日志里。
@@ -514,6 +524,9 @@ Here the first paragraph has been broken into two lines, and these have been add
 
 第二段尚未结束，也没有被分为多行。
 The second paragraph has not been concluded or broken into lines.
+
+
+
 
 以下是日志的记录。
 The log file shows the following. 
